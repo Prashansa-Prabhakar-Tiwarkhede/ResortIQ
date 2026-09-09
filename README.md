@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ResortIQ
 
 ### AI-Powered Resort Operations, Guest Experience & Revenue Intelligence
@@ -292,3 +293,6 @@ hard-coded, while remaining fully reproducible and requiring no external
 data. Swapping in real historical sensor + maintenance-ticket data only
 requires replacing `_generate_training_data()` in
 `backend/app/ml/maintenance.py`.
+=======
+# ResortIQ
+>>>>>>> 24fd9041af04d3612d7b5a053084ce873de84cf8
