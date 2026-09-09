@@ -53,7 +53,15 @@ app.include_router(revenue_router.router)
 
 @app.on_event("startup")
 async def on_startup():
-    manager.set_loop(asyncio.get_running_loop())
+    try:
+        manager.set_loop(asyncio.get_running_loop())
+    except Exception:
+        pass
+    try:
+        from seed import ensure_seeded
+        ensure_seeded()
+    except Exception as e:
+        print(f"Startup seed notice: {e}")
 
 
 @app.websocket("/ws")

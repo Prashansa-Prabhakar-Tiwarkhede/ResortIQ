@@ -51,10 +51,7 @@ def wipe_and_create():
     Base.metadata.create_all(bind=engine)
 
 
-def run():
-    wipe_and_create()
-    db = SessionLocal()
-
+def seed_data(db):
     # ---------- Staff ----------
     staff_list = []
     for i in range(18):
@@ -247,7 +244,30 @@ def run():
     if hero:
         print(f"  Hero maintenance demo unit: {hero.name} (id={hero.id})")
     print("  Demo logins: manager@resortiq.demo / staff@resortiq.demo / guest@resortiq.demo  (password: demo1234)")
-    db.close()
+
+
+def run():
+    wipe_and_create()
+    db = SessionLocal()
+    try:
+        seed_data(db)
+    finally:
+        db.close()
+
+
+def ensure_seeded(db=None):
+    Base.metadata.create_all(bind=engine)
+    should_close = False
+    if db is None:
+        db = SessionLocal()
+        should_close = True
+    try:
+        if db.query(m.User).count() == 0:
+            print("Database empty. Auto-seeding initial demo data...")
+            seed_data(db)
+    finally:
+        if should_close:
+            db.close()
 
 
 if __name__ == "__main__":
