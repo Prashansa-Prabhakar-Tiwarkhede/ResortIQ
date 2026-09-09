@@ -1,4 +1,5 @@
 import asyncio
+import os
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -14,9 +15,25 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="ResortIQ API", version="0.1.0",
               description="AI-Powered Resort Operations, Guest Experience & Revenue Intelligence")
 
+ALLOWED_ORIGINS = [
+    "https://resort-iq-d2q1.vercel.app",
+    "https://resort-iq-eta.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000",
+]
+
+env_origins = os.getenv("ALLOWED_ORIGINS")
+if env_origins:
+    ALLOWED_ORIGINS.extend([origin.strip() for origin in env_origins.split(",") if origin.strip()])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=r"https:\/\/resort-iq-.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
