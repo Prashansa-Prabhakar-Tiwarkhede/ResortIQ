@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # ResortIQ
 
 ### AI-Powered Resort Operations, Guest Experience & Revenue Intelligence
@@ -282,17 +282,3 @@ another role's action reflected.
 - Phase 6: push WebSocket messages to specific staff members (task
   reassignment) rather than a single broadcast channel, and add a small
   "Live" connection indicator in the UI
-
-## Notes on the AI implementation
-
-The maintenance model's failure labels are generated from a synthetic
-weighted-deviation function during training — a stand-in for real historical
-failure-ticket data, using the exact same feature schema a production
-deployment would use. This keeps the model **actually trained** rather than
-hard-coded, while remaining fully reproducible and requiring no external
-data. Swapping in real historical sensor + maintenance-ticket data only
-requires replacing `_generate_training_data()` in
-`backend/app/ml/maintenance.py`.
-=======
-# ResortIQ
->>>>>>> 24fd9041af04d3612d7b5a053084ce873de84cf8
