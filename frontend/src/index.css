@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at 20% -10%, rgba(229,164,48,0.06), transparent 40%), #0B0D0F;
+  min-height: 100vh;
+}
+
+.font-display { font-family: 'Fraunces', serif; }
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #333944; border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
